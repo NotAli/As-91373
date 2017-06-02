@@ -2,16 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>4587c367-09e2-4d6c-a4b6-9bacea673038</ProjectGuid>
+    <ProjectGuid>0a09b174-4660-468d-8145-6502285d9ff0</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Hangman_As.py</StartupFile>
+    <StartupFile>HM_Version_9.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>Hangman As</Name>
-    <RootNamespace>Hangman As</RootNamespace>
-    <InterpreterId>Global|PythonCore|3.6</InterpreterId>
+    <Name>HM Version 9</Name>
+    <RootNamespace>HM Version 9</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,10 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Hangman_As.py" />
-  </ItemGroup>
-  <ItemGroup>
-    <InterpreterReference Include="Global|PythonCore|3.6" />
+    <Compile Include="HM_Version_9.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
