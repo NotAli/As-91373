@@ -77,10 +77,11 @@ def guess_and_check(lives, the_word):
                 print("Your guess is incorrect.")
             else:
                 print("Your guess is correct")
+            return lives 
             break
         except ValueError:
             current_guess = input("I'm sorry but your input is incorrect. Please try again. ")
-    return lives 
+
 
 def display_result(the_word, lives):
     try:
@@ -88,7 +89,7 @@ def display_result(the_word, lives):
             print("Well Done you've won, the word was {}".format(the_word))
         else: 
             lives = print_hangman_cartoon(lives)
-            print("Bad luck. You've run out of lives. The word was {} and you guessed {}".format(the_word, printed_word))
+            print("Bad luck. You've run out of lives. The word was {} and you guessed {}".format(" ".join(the_word), " ".join(printed_word)))
             continue_ = input("Would you like to play again? Type y if yes or hit any other key to quit ").lower()
 
         if continue_ == 'y':
@@ -108,8 +109,12 @@ def game_outline():
     while the_word != printed_word and lives != 0:
         print_game_info(lives)
         lives = guess_and_check(lives, the_word)
-        lives = display_result(the_word, lives)
+    print_game_info(lives)
+    display_result(the_word, lives)
+  
 
-#The main routine is below            
+#The main routine is below          
 game_outline()
+
+
 
