@@ -1,6 +1,6 @@
 #Alicia Notley
 #Coding started on: 16/05/17.
-#Coding Finished on the:
+#Coding Finished on the: 04/06/17
 #As 91373
 #Hangman Game.
 
@@ -23,8 +23,6 @@ def game_setup():
     the_word = list(random.choice(word_list))
     global printed_word
     printed_word = ["___"] * len(the_word)
-    print(" ".join(printed_word))
-    print(" ")
     global guessed_letters
     guessed_letters = []  
     return the_word
@@ -60,14 +58,15 @@ def print_hangman_cartoon(lives):
 
 def print_game_info(lives):
     print_hangman_cartoon(lives)
+    guessed_letters.sort()
     print("""The letters that you have guessed so far are: {} """.format(" ".join(guessed_letters)))
     print(" ".join(printed_word))
-    print(" ") 
-
+    
 def guess_and_check(lives, the_word):
     while True:
         try:
             correct_letter = False
+            print(" ")
             current_guess = input("Please guess one letter. ").lower()
             guessed_letters.append(current_guess)
             print(" ")  
@@ -75,12 +74,20 @@ def guess_and_check(lives, the_word):
                 if current_guess == the_word[i]: 
                     printed_word[i] = current_guess 
                     correct_letter = True
+                    
             if guessed_letters.count(current_guess) >= 2:
-                #guessed_letters.pop(current_guess)
-                print("f")
+                print("This letter has already been guessed")
+                index_num = guessed_letters.index(current_guess)
+                guessed_letters.pop(index_num)
+                
             elif len(current_guess) != 1 or current_guess.isalpha() == False:
                 print("Your input isn't valid. Please Try again.")
-                correct_letter = none
+                index_num = guessed_letters.index(current_guess)
+                guessed_letters.pop(index_num)
+                #This value is set to True hear, not because the correct letter has been found like the name suggests (in this one usage) but because it
+                #is needed so that the program doesn't run the next elif loop but rather will skip it. 
+                correct_letter = True
+                
             elif correct_letter == False:
                 lives -= 1
                 print("Your guess is incorrect.")
@@ -97,14 +104,16 @@ def guess_and_check(lives, the_word):
 def display_result(the_word, lives):
     try:
         if the_word == printed_word:    
-            print("Well Done you've won, the word was {}".format(the_word))
+            print("Well Done you've won, the word was {}".format(" ".join(the_word)))
+            print(" ")
             
         else: 
             lives = print_hangman_cartoon(lives)
             print("Bad luck. You've run out of lives. The word was {} and you guessed {}".format(" ".join(the_word), " ".join(printed_word)))
         continue_ = input("Would you like to play again? Type y if yes or hit any other key to quit ").lower()
+        print(" ")
 
-        if continue_ == 'y':
+        if 'y' in continue_:
             os.system("cls")
             game_outline()
         else:
@@ -115,13 +124,12 @@ def display_result(the_word, lives):
 
 def game_outline():
     os.system("color 03")
-    print("Welcome to vocabulary building hangman! Where we make knowledge great again")
-    print(" ")
+    print("WELCOME TO VOCABULARY BUILDING HANGMAN, WHERE WE MAKE KNOWLEDGE GREAT AGIAN")
     lives = 8
     the_word = game_setup()
     while the_word != printed_word and lives != 0:
-        lives = guess_and_check(lives, the_word)
         print_game_info(lives)
+        lives = guess_and_check(lives, the_word)
     print_game_info(lives)
     display_result(the_word, lives)
   
